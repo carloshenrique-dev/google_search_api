@@ -9,7 +9,7 @@ This sample code handles HTTP GET requests to `/` and `/echo/<message>`
 
 Crie um arquivo .env na raiz do projeto da seguinte forma: 
 
-KEY=AIzaSyAZ-46yaXErqJRxr8uxeyepg0knGuD0f6o
+KEY=SUA_KEY
 
 Siga as instrucoes do package 
 
