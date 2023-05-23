@@ -4,6 +4,7 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_router/shelf_router.dart';
 import 'package:http/http.dart' as http;
+import 'package:dotenv/dotenv.dart';
 
 // Configure routes.
 final _router = Router()
@@ -25,8 +26,10 @@ Future<Response> _echoHandler(Request request) async {
 
 Future<String> searchOnGoogle(String query) async {
   final encodedQuery = Uri.encodeComponent(query);
+  var env = DotEnv(includePlatformEnvironment: true)..load();
+  final apiKey = env['KEY'];
   final url =
-      'https://www.googleapis.com/customsearch/v1?key=AIzaSyAZ-46yaXErqJRxr8uxeyepg0knGuD0f6o&cx=24ff674370c5c406b&q=$encodedQuery';
+      'https://www.googleapis.com/customsearch/v1?key=$apiKey&cx=24ff674370c5c406b&q=$encodedQuery';
   final response = await http.get(Uri.parse(url));
   return response.body;
 }
